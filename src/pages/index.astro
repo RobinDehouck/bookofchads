@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Book of Chads',
+  title: 'Book of Chads'
 };
 
 const stories = [
@@ -21,57 +21,62 @@ const stories = [
 ];
 ---
 
-<Layout metadata={metadata}>
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-white border-b border-gray-200 z-50">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center h-16">
-        <span class="text-xl font-bold">CHAD</span>
-        <div class="hidden md:flex space-x-8">
-          <a href="#" class="text-gray-700">About</a>
-          <a href="#" class="text-gray-700">Meme HoF</a>
-          <a href="#" class="text-gray-700">TAO of Chad</a>
-          <a href="#" class="text-gray-700">ChadOS</a>
-          <a href="#" class="text-gray-700">BROadmap</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <main class="pt-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="text-center">
-        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
-          Don't let your memes be dreams
-        </h1>
-        <p class="mt-4 text-xl text-gray-600">
-          The Book of Chads: Tales of Based Trading
-        </p>
-        <div class="mt-8">
-          <a
-            href="https://tensor.trade"
-            class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg transition-colors font-medium"
-          >
-            Trading now on Tensor ↗
-          </a>
-        </div>
-      </div>
-
-      <!-- Stories -->
-      <div class="mt-24 space-y-12">
-        {stories.map((story) => (
-          <div class="bg-white rounded-lg p-6 border-2 border-gray-100 hover:border-yellow-400 transition-colors">
-            <div class="flex justify-between items-start mb-4">
-              <span class="text-gray-500">{story.period}</span>
-              <span class="text-yellow-600 font-medium">- {story.author}</span>
-            </div>
-            <p class="text-gray-800 text-lg leading-relaxed">
-              "{story.story}"
-            </p>
+<Layout {metadata}>
+  <div class="relative">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white border-b border-gray-200 z-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-xl font-bold">CHAD</span>
+          <div class="hidden md:flex space-x-8">
+            <a href="#" class="text-gray-700">About</a>
+            <a href="#" class="text-gray-700">Meme HoF</a>
+            <a href="#" class="text-gray-700">TAO of Chad</a>
+            <a href="#" class="text-gray-700">ChadOS</a>
+            <a href="#" class="text-gray-700">BROadmap</a>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-  </main>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16 min-h-screen bg-white">
+      <!-- Hero Section -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            Don't let your memes be dreams
+          </h1>
+          <p class="mt-4 text-xl text-gray-600">
+            The Book of Chads: Tales of Based Trading
+          </p>
+          <div class="mt-8">
+            <a
+              href="https://tensor.trade"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg transition-colors font-medium"
+            >
+              Trading now on Tensor ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Stories Section -->
+        <div class="mt-24 space-y-12">
+          {
+            stories.map((story) => (
+              <div class="bg-white rounded-lg p-6 border-2 border-gray-100 hover:border-yellow-400 transition-colors">
+                <div class="flex justify-between items-start mb-4">
+                  <span class="text-gray-500">{story.period}</span>
+                  <span class="text-yellow-600 font-medium">- {story.author}</span>
+                </div>
+                <p class="text-gray-800 text-lg leading-relaxed">"{story.story}"</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </main>
+  </div>
 </Layout>
