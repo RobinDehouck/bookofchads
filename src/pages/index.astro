@@ -11,38 +11,41 @@ const stories = [
     id: 1,
     author: "DisperseControl",
     period: "2017-2020",
+    title: "The -300K Bear Slayer",
+    subtitle: "From Rekt to Revival",
     story: "When I first got started in 2017 I had a net worth of close to -$300K (negative) and could barely scrape together $200 to buy anything. Then in 2019/20 lost my job and house lol. Thanks to crypto I have pretty much flipped the entire situation in the other direction. I have a visceral hatred for bears",
-    theme: "from-emerald-500 to-blue-500",
-    emoji: "📈"
+    theme: "from-green-400 to-blue-500",
+    emoji: "🗡️"
   },
   {
     id: 2,
     author: "floatxbt",
     period: "2023",
+    title: "Built Different",
+    subtitle: "Never Stop The Grind",
     story: "Bro im built different, i lost ever single satoshi u see here but got up everyday hungry and hunting with a positive attitude",
-    theme: "from-orange-500 to-red-500",
-    emoji: "💪"
+    theme: "from-yellow-400 to-red-500",
+    emoji: "⚔️"
   }
 ];
 ---
 
 <Layout {metadata}>
-  <div class="min-h-screen bg-black text-white overflow-hidden">
+  <div class="min-h-screen bg-black text-white overflow-hidden font-pixel">
     <!-- Cover Page -->
     <section class="min-h-screen flex flex-col items-center justify-center p-4 relative">
+      <div class="absolute inset-0 bg-[url('/pixel-pattern.png')] opacity-10"></div>
       <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-20"></div>
-      <h1 class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 text-center">
-        The Book of Chads
+      <h1 class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 text-center pixel-edges">
+        THE BOOK OF CHADS
       </h1>
-      <p class="mt-6 text-xl md:text-2xl text-gray-300 max-w-2xl text-center">
-        Legendary tales of resilience, determination, and the relentless pursuit of success.
+      <p class="mt-6 text-xl md:text-2xl text-gray-300 max-w-2xl text-center pixel-edges">
+        PRESS START TO READ LEGENDARY TALES
       </p>
-      <div class="mt-12 animate-bounce">
-        <p class="text-gray-400">Scroll to begin reading</p>
+      <div class="mt-12 animate-pulse">
+        <p class="text-yellow-400 pixel-edges blink">SCROLL TO START</p>
         <div class="mt-2 flex justify-center">
-          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+          <div class="pixel-arrow">▼</div>
         </div>
       </div>
     </section>
@@ -53,42 +56,44 @@ const stories = [
         class="min-h-screen flex items-center justify-center p-4 relative snap-start"
         id={`story-${story.id}`}
       >
-        <!-- Background gradient -->
+        <!-- Pixel art background -->
+        <div class="absolute inset-0 bg-[url('/pixel-grid.png')] opacity-5"></div>
         <div class={`absolute inset-0 bg-gradient-to-br ${story.theme} opacity-5`}></div>
         
         <!-- Story card -->
         <div class="max-w-3xl w-full">
-          <div class="backdrop-blur-lg bg-white/10 rounded-2xl p-8 md:p-12 transform transition-all hover:scale-[1.02]">
+          <div class="backdrop-blur-lg bg-white/10 rounded-none border-2 border-yellow-400/30 p-8 md:p-12 transform transition-all hover:scale-[1.02] pixel-edges">
             <!-- Story header -->
             <div class="flex justify-between items-start mb-8">
               <div>
-                <span class="text-5xl mb-4">{story.emoji}</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-4">Chapter {index + 1}</h2>
-                <p class="text-gray-400 mt-2">{story.period}</p>
+                <span class="text-5xl mb-4 pixel-edges">{story.emoji}</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-yellow-400 pixel-edges uppercase">{story.title}</h2>
+                <p class="text-xl text-yellow-400/70 mt-2 pixel-edges">{story.subtitle}</p>
+                <p class="text-gray-400 mt-2 pixel-edges">{story.period}</p>
               </div>
               <div class="text-right">
-                <span class="text-xl text-yellow-400">- {story.author}</span>
+                <span class="text-xl text-yellow-400 pixel-edges">@{story.author}</span>
               </div>
             </div>
 
             <!-- Story content -->
             <div class="relative">
               <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-yellow-400 to-transparent opacity-50"></div>
-              <p class="text-xl md:text-2xl leading-relaxed">
+              <p class="text-xl md:text-2xl leading-relaxed pixel-edges">
                 "{story.story}"
               </p>
             </div>
 
             <!-- Navigation hints -->
-            <div class="mt-12 flex justify-between text-sm text-gray-400">
+            <div class="mt-12 flex justify-between text-sm text-yellow-400/70 pixel-edges">
               {index > 0 && (
-                <a href={`#story-${story.id - 1}`} class="hover:text-white transition-colors">
-                  ← Previous Chapter
+                <a href={`#story-${story.id - 1}`} class="hover:text-yellow-400 transition-colors">
+                  ← PREVIOUS TALE
                 </a>
               )}
               {index < stories.length - 1 && (
-                <a href={`#story-${story.id + 1}`} class="hover:text-white transition-colors ml-auto">
-                  Next Chapter →
+                <a href={`#story-${story.id + 1}`} class="hover:text-yellow-400 transition-colors ml-auto">
+                  NEXT TALE →
                 </a>
               )}
             </div>
@@ -103,15 +108,45 @@ const stories = [
         href="https://www.tensor.trade/trade/chads"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+        class="inline-block bg-yellow-400 text-black px-6 py-3 border-2 border-black font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 pixel-edges"
       >
-        Trading on Tensor ↗
+        TRADE ON TENSOR ↗
       </a>
     </div>
   </div>
 </Layout>
 
 <style>
+  @font-face {
+    font-family: 'PixelFont';
+    src: url('/fonts/VT323-Regular.ttf') format('truetype');
+  }
+
+  .font-pixel {
+    font-family: 'PixelFont', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  .pixel-edges {
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+  }
+
+  .pixel-arrow {
+    font-size: 24px;
+    color: #FBBF24;
+    image-rendering: pixelated;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .blink {
+    animation: blink 1s steps(1) infinite;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
@@ -121,10 +156,5 @@ const stories = [
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-  }
-
-  .gradient-animate {
-    background-size: 200% 200%;
-    animation: gradient 15s ease infinite;
   }
 </style>
