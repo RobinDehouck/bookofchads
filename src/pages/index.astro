@@ -42,192 +42,278 @@ const reversedStories = [...stories].reverse();
 ---
 
 <Layout {metadata}>
-  <div class="min-h-screen bg-[#F5F1E3] text-[#2C3639] overflow-hidden font-pixel">
+  <main class="min-h-screen bg-chad-cream text-chad-dark overflow-hidden font-pixel">
     <!-- Cover Page -->
-    <section class="min-h-screen flex flex-col items-center justify-center p-4 relative">
-      <!-- Pixel Grid Background -->
-      <div class="absolute inset-0 grid grid-cols-[repeat(32,1fr)] grid-rows-[repeat(32,1fr)] opacity-10">
-        {Array.from({ length: 1024 }).map(() => (
-          <div class="border-[0.5px] border-[#2C3639]/10"></div>
-        ))}
+    <section class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <!-- Enhanced Grid Background with Parallax -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 grid-bg opacity-10"></div>
+        <div class="absolute inset-0 bg-gradient-radial from-transparent to-chad-cream/80"></div>
       </div>
 
-      <!-- Hero Section -->
-      <div class="relative z-10 text-center">
-        <h1 class="text-6xl md:text-8xl font-black text-[#2C3639] pixel-edges mb-8 relative">
-          <span class="absolute -inset-1 bg-[#ffc131]/10"></span>
-          <span class="relative">BOOK OF CHADS</span>
-        </h1>
-        
-        <div class="max-w-2xl mx-auto mb-12 bg-white p-8 pixel-border">
-          <p class="text-xl pixel-edges mb-6">
-            Don't let your memes be dreams
-          </p>
-        </div>
-
-        <a 
-          href="#story-3"
-          class="inline-block px-8 py-4 bg-[#ffc131] text-white font-bold text-xl pixel-border hover:translate-y-[-2px] hover:shadow-xl transition-all duration-200"
-        >
-          READ TALES
-        </a>
-      </div>
-
-      <!-- Floating Pixel Art Elements -->
+      <!-- Floating Elements with Better Animation -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 8 }).map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <div 
-            class="absolute w-12 h-12 pixel-float"
+            class="absolute w-12 h-12 animate-pixel-float"
             style={`
               top: ${Math.random() * 100}%;
               left: ${Math.random() * 100}%;
-              animation: float ${5 + Math.random() * 5}s ease-in-out infinite;
               animation-delay: ${Math.random() * 5}s;
+              animation-duration: ${6 + Math.random() * 4}s;
+              opacity: ${0.1 + Math.random() * 0.2};
             `}
           >
             {["💪", "👑", "⚔️", "💎", "🚀", "💯"][Math.floor(Math.random() * 6)]}
           </div>
         ))}
       </div>
+
+      <!-- Enhanced Hero Section -->
+      <div class="relative z-10 text-center max-w-[90vw]">
+        <h1 class="chad-title text-7xl md:text-9xl mb-8 relative group">
+          <span class="absolute -inset-x-8 -inset-y-4 bg-chad-gold/10 blur-xl group-hover:bg-chad-gold/20 transition-all duration-700"></span>
+          <span class="relative inline-block animate-title-pulse">BOOK OF CHADS</span>
+        </h1>
+        
+        <div class="hero-card relative group">
+          <div class="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+          <div class="relative p-8 md:p-12">
+            <p class="text-2xl md:text-3xl pixel-edges mb-6 text-gradient animate-gradient">
+              Don't let your memes be dreams
+            </p>
+          </div>
+          <div class="absolute inset-0 border-2 border-chad-dark pixel-edges pointer-events-none"></div>
+        </div>
+
+        <a 
+          href="#story-3"
+          class="cta-button mt-12 group relative inline-block"
+        >
+          <span class="relative px-8 py-4 bg-chad-gold text-white font-bold text-xl block pixel-edges
+            transform transition-all duration-200 group-hover:translate-y-[-4px] group-hover:shadow-xl">
+            READ TALES
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </span>
+          <span class="absolute inset-0 bg-chad-gold/50 blur-lg opacity-50 group-hover:opacity-75 transition-all"></span>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-6 border-b-2 border-r-2 border-chad-dark rotate-45 opacity-50"></div>
+      </div>
     </section>
 
-    <!-- Stories -->
+    <!-- Enhanced Stories -->
     {reversedStories.map((story, index) => (
       <section
         class="min-h-screen flex items-center justify-center p-4 relative snap-start"
         id={`story-${story.id}`}
       >
         <div class="max-w-4xl w-full">
-          <div class="bg-white pixel-border p-8 relative group hover:translate-y-[-4px] transition-all duration-300">
-            {/* Story Header */}
-            <div class="flex justify-between items-start mb-8">
-              <div>
-                <span class="text-5xl mb-4">{story.emoji}</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-[#2C3639] pixel-edges">
+          <article class="story-card group">
+            {/* Progress Indicator */}
+            <div class="absolute top-0 left-0 w-full h-1 bg-chad-dark/10">
+              <div 
+                class="h-full bg-chad-gold transition-all duration-300"
+                style={`width: ${((stories.length - index) / stories.length) * 100}%`}
+              ></div>
+            </div>
+
+            <header class="flex justify-between items-start mb-8">
+              <div class="space-y-4">
+                <span class="text-6xl pixel-edges inline-block animate-emoji-float">
+                  {story.emoji}
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-chad-dark pixel-edges chad-title">
                   {story.title}
                 </h2>
-                <p class="text-xl text-[#2C3639]/70 mt-2 pixel-edges">{story.subtitle}</p>
-                <p class="text-[#2C3639]/60 mt-2 pixel-edges">{story.period}</p>
+                <p class="text-xl text-chad-dark/70 pixel-edges">{story.subtitle}</p>
+                <p class="text-chad-dark/60 pixel-edges">{story.period}</p>
               </div>
               
               <a 
                 href={`https://twitter.com/${story.author}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-xl text-[#2C3639] hover:text-[#ffc131] transition-colors pixel-edges inline-flex items-center gap-1"
+                class="social-link group"
               >
-                <span class="text-[#ffc131]">𝕏</span>
-                {story.author}
+                <span class="text-chad-gold mr-1 group-hover:text-chad-gold/80">𝕏</span>
+                <span class="text-xl">{story.author}</span>
               </a>
-            </div>
+            </header>
 
-            {/* Story Content */}
-            <div class="relative">
-              <div class="absolute -left-4 top-0 bottom-0 w-1 bg-[#ffc131]/50"></div>
+            <div class="story-content relative">
+              <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-chad-gold to-transparent opacity-50"></div>
               <p class="text-xl md:text-2xl leading-relaxed pixel-edges">
                 "{story.story}"
               </p>
             </div>
 
-            {/* Navigation */}
-            <div class="mt-12 flex justify-between text-sm pixel-edges">
+            <nav class="mt-12 flex justify-between text-sm pixel-edges">
               {index > 0 && (
                 <a 
                   href={`#story-${reversedStories[index - 1].id}`}
-                  class="pixel-button"
+                  class="nav-button group"
                 >
-                  ← PREVIOUS TALE
+                  <span class="transform group-hover:-translate-x-1 transition-transform inline-block">←</span>
+                  <span class="ml-2">PREVIOUS TALE</span>
                 </a>
               )}
               {index < reversedStories.length - 1 && (
                 <a 
                   href={`#story-${reversedStories[index + 1].id}`}
-                  class="pixel-button ml-auto"
+                  class="nav-button group ml-auto"
                 >
-                  NEXT TALE →
+                  <span class="mr-2">NEXT TALE</span>
+                  <span class="transform group-hover:translate-x-1 transition-transform inline-block">→</span>
                 </a>
               )}
-            </div>
-          </div>
+            </nav>
+          </article>
         </div>
       </section>
     ))}
 
-    <!-- Trade Button -->
+    <!-- Enhanced Trade Button -->
     <div class="fixed bottom-4 right-4 z-50">
       <a
         href="https://www.tensor.trade/trade/chads"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-block bg-[#ffc131] text-white px-6 py-3 font-bold pixel-border hover:translate-y-[-2px] hover:shadow-xl transition-all duration-200"
+        class="trade-button group"
       >
-        BECOME A CHAD ↗
+        <span class="relative px-6 py-3 bg-chad-gold text-white font-bold block transform
+          transition-all duration-200 group-hover:translate-y-[-4px] group-hover:translate-x-[2px]">
+          BECOME A CHAD
+          <span class="inline-block transform group-hover:translate-x-1 transition-transform">↗</span>
+        </span>
       </a>
     </div>
-  </div>
+  </main>
 </Layout>
 
 <style>
-  /* Pixel Art Styles */
-  .pixel-edges {
-    image-rendering: pixelated;
-    -webkit-font-smoothing: none;
+  :root {
+    --chad-gold: #ffc131;
+    --chad-dark: #2C3639;
+    --chad-cream: #F5F1E3;
   }
 
-  .pixel-border {
-    border: 4px solid #2C3639;
+  .bg-chad-cream { background-color: var(--chad-cream); }
+  .text-chad-dark { color: var(--chad-dark); }
+  .bg-chad-gold { background-color: var(--chad-gold); }
+
+  /* Enhanced Grid Background */
+  .grid-bg {
+    background-image: 
+      linear-gradient(var(--chad-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--chad-dark) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.05;
+  }
+
+  /* Enhanced Card Styles */
+  .story-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 4px solid var(--chad-dark);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+  }
+
+  .story-card:hover {
+    transform: translateY(-8px);
     box-shadow: 
-      4px 4px 0 #2C3639,
-      -4px -4px 0 rgba(44, 54, 57, 0.1);
+      0 20px 40px rgba(44, 54, 57, 0.1),
+      0 0 0 4px rgba(255, 193, 49, 0.2);
   }
 
-  .pixel-button {
+  /* Enhanced Typography */
+  .chad-title {
+    letter-spacing: -0.05em;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 
+      2px 2px 0 var(--chad-dark),
+      4px 4px 0 rgba(255, 193, 49, 0.5);
+  }
+
+  /* Enhanced Animations */
+  @keyframes pixel-float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  @keyframes title-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  @keyframes emoji-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-pixel-float {
+    animation: pixel-float 5s ease-in-out infinite;
+  }
+
+  .animate-title-pulse {
+    animation: title-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-emoji-float {
+    animation: emoji-float 3s ease-in-out infinite;
+  }
+
+  /* Enhanced Button Styles */
+  .nav-button {
     background: white;
-    border: 2px solid #2C3639;
+    border: 2px solid var(--chad-dark);
     padding: 0.5rem 1rem;
-    color: #2C3639;
+    color: var(--chad-dark);
     font-weight: bold;
     transition: all 0.2s ease;
-    box-shadow: 2px 2px 0 #2C3639;
+    box-shadow: 2px 2px 0 var(--chad-dark);
   }
 
-  .pixel-button:hover {
+  .nav-button:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 #2C3639;
-    color: #ffc131;
+    box-shadow: 4px 4px 0 var(--chad-dark);
+    color: var(--chad-gold);
   }
 
-  .pixel-float {
-    font-size: 2rem;
-    opacity: 0.2;
+  .social-link {
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    border-radius: 4px;
   }
 
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0) rotate(0);
-    }
-    50% {
-      transform: translateY(-20px) rotate(5deg);
-    }
+  .social-link:hover {
+    background: rgba(255, 193, 49, 0.1);
+    transform: translateY(-2px);
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 12px;
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(
+      45deg,
+      var(--chad-dark) 0%,
+      var(--chad-gold) 50%,
+      var(--chad-dark) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 5s linear infinite;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #F5F1E3;
-    border-left: 2px solid #2C3639;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #2C3639;
-    border: 3px solid #F5F1E3;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ffc131;
+  @keyframes gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
   }
 
   /* Smooth Scrolling */
@@ -236,13 +322,35 @@ const reversedStories = [...stories].reverse();
     scroll-snap-type: y proximity;
   }
 
-  section {
-    scroll-snap-align: start;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+      scroll-snap-type: none;
+    }
+
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 
-  @media (max-width: 768px) {
-    html {
-      scroll-snap-type: y proximity;
-    }
+  /* Enhanced Scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--chad-cream);
+    border-left: 2px solid var(--chad-dark);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--chad-dark);
+    border: 3px solid var(--chad-cream);
+    transition: all 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--chad-gold);
   }
 </style>
