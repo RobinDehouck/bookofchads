@@ -61,19 +61,19 @@ const stories = [
     </section>
 
     <!-- Stories -->
-    {stories.map((story, index) => (
+    {stories.slice().reverse().map((story, index) => (
       <section
         class="min-h-screen flex items-center justify-center p-4 relative snap-start"
         id={`story-${story.id}`}
       >
-        <!-- Pixel art background -->
+        {/* Pixel art background */}
         <div class="absolute inset-0 bg-[url('/pixel-grid.png')] opacity-5"></div>
         <div class={`absolute inset-0 bg-gradient-to-br ${story.theme} opacity-5`}></div>
         
-        <!-- Story card -->
+        {/* Story card */}
         <div class="max-w-3xl w-full">
           <div class="backdrop-blur-lg bg-white/10 rounded-none border-2 border-yellow-400/30 p-8 md:p-12 transform transition-all hover:scale-[1.02] pixel-edges">
-            <!-- Story header -->
+            {/* Story header */}
             <div class="flex justify-between items-start mb-8">
               <div>
                 <span class="text-5xl mb-4 pixel-edges">{story.emoji}</span>
@@ -85,24 +85,24 @@ const stories = [
                 <span class="text-xl text-yellow-400 pixel-edges">@{story.author}</span>
               </div>
             </div>
-
-            <!-- Story content -->
+    
+            {/* Story content */}
             <div class="relative">
               <div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-yellow-400 to-transparent opacity-50"></div>
               <p class="text-xl md:text-2xl leading-relaxed pixel-edges">
                 "{story.story}"
               </p>
             </div>
-
-            <!-- Navigation hints -->
+    
+            {/* Navigation hints */}
             <div class="mt-12 flex justify-between text-sm text-yellow-400/70 pixel-edges">
-              {index > 0 && (
-                <a href={`#story-${story.id - 1}`} class="hover:text-yellow-400 transition-colors">
+              {index < stories.length - 1 && (
+                <a href={`#story-${story.id + 1}`} class="hover:text-yellow-400 transition-colors">
                   ← PREVIOUS TALE
                 </a>
               )}
-              {index < stories.length - 1 && (
-                <a href={`#story-${story.id + 1}`} class="hover:text-yellow-400 transition-colors ml-auto">
+              {index > 0 && (
+                <a href={`#story-${story.id - 1}`} class="hover:text-yellow-400 transition-colors ml-auto">
                   NEXT TALE →
                 </a>
               )}
