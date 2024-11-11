@@ -1,4 +1,5 @@
 ---
+import Metadata from '~/components/common/Metadata.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 interface Story {
@@ -57,6 +58,11 @@ const CHAD_QUOTES = [
 ];
 
 const REACTIONS = ['🔥', '💎', '🚀', '🐻'];
+
+const metadata = {
+  title: 'Book of CHADS',
+  description: 'Legendary tales of crypto warriors',
+}
 ---
 
 <Layout {metadata}>
