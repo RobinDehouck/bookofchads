@@ -61,7 +61,7 @@ const stories = [
     </section>
 
     <!-- Stories -->
-    {stories.slice().reverse().map((story, index) => (
+    {stories.slice().reverse().map((story, index, reversedArray) => (
       <section
         class="min-h-screen flex items-center justify-center p-4 relative snap-start"
         id={`story-${story.id}`}
@@ -103,13 +103,13 @@ const stories = [
     
             {/* Navigation hints */}
             <div class="mt-12 flex justify-between text-sm text-yellow-400/70 pixel-edges">
-              {index < stories.length - 1 && (
-                <a href={`#story-${story.id + 1}`} class="hover:text-yellow-400 transition-colors">
+              {index > 0 && (
+                <a href={`#story-${reversedArray[index - 1].id}`} class="hover:text-yellow-400 transition-colors">
                   ← PREVIOUS TALE
                 </a>
               )}
-              {index > 0 && (
-                <a href={`#story-${story.id - 1}`} class="hover:text-yellow-400 transition-colors ml-auto">
+              {index < reversedArray.length - 1 && (
+                <a href={`#story-${reversedArray[index + 1].id}`} class="hover:text-yellow-400 transition-colors ml-auto">
                   NEXT TALE →
                 </a>
               )}
