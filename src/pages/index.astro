@@ -2,108 +2,76 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'The Book of Chads - Pixel Stories',
+  title: 'Book of Chads',
 };
 
-// Stories database
-const chadStories = [
+const stories = [
   {
     id: 1,
     author: "DisperseControl",
     period: "2017-2020",
-    title: "From -300K to Freedom",
-    story: "When I first got started in 2017 I had a net worth of close to -$300K (negative) and could barely scrape together $200 to buy anything. Then in 2019/20 lost my job and house lol. Thanks to crypto I have pretty much flipped the entire situation in the other direction. I have a visceral hatred for bears",
-    pixelAvatar: "/assets/chad-avatars/1.png"
+    story: "When I first got started in 2017 I had a net worth of close to -$300K (negative) and could barely scrape together $200 to buy anything. Then in 2019/20 lost my job and house lol. Thanks to crypto I have pretty much flipped the entire situation in the other direction. I have a visceral hatred for bears"
   },
   {
     id: 2,
     author: "floatxbt",
     period: "2023",
-    title: "Built Different",
-    story: "Bro im built different, i lost ever single satoshi u see here but got up everyday hungry and hunting with a positive attitude",
-    pixelAvatar: "/assets/chad-avatars/2.png"
+    story: "Bro im built different, i lost ever single satoshi u see here but got up everyday hungry and hunting with a positive attitude"
   }
 ];
-
-// Shuffle the stories
-const shuffledStories = [...chadStories].sort(() => Math.random() - 0.5);
 ---
 
 <Layout metadata={metadata}>
-  <!-- Navigation Bar (matching the image) -->
-  <nav class="fixed top-0 w-full bg-white border-b border-gray-200 px-4 py-3 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <h1 class="font-pixel text-xl font-bold">CHAD</h1>
-      <div class="flex gap-6">
-        <a href="#" class="font-pixel">About</a>
-        <a href="#" class="font-pixel">Meme HoF</a>
-        <a href="#" class="font-pixel">TAO of Chad</a>
-        <a href="#" class="font-pixel">ChadOS</a>
-        <a href="#" class="font-pixel">BROadmap</a>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white border-b border-gray-200 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <span class="text-xl font-bold">CHAD</span>
+        <div class="hidden md:flex space-x-8">
+          <a href="#" class="text-gray-700">About</a>
+          <a href="#" class="text-gray-700">Meme HoF</a>
+          <a href="#" class="text-gray-700">TAO of Chad</a>
+          <a href="#" class="text-gray-700">ChadOS</a>
+          <a href="#" class="text-gray-700">BROadmap</a>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="pt-20 min-h-screen" style="background: url('/assets/pixel-grid-bg.png') repeat;">
-    <!-- Hero Section -->
-    <div class="max-w-4xl mx-auto px-4 py-16 text-center">
-      <h1 class="font-pixel text-4xl mb-4">Don't let your memes be dreams</h1>
-      <p class="font-pixel text-lg text-gray-700 mb-8">
-        The Book of Chads: Tales of Based Trading
-      </p>
-      <a 
-        href="https://tensor.trade" 
-        target="_blank" 
-        class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-pixel px-8 py-3 rounded-lg transition-colors"
-      >
-        Trading now on Tensor ↗
-      </a>
-    </div>
-
-    <!-- Stories Grid -->
-    <div class="max-w-6xl mx-auto px-4 py-16 grid gap-8">
-      {shuffledStories.map((story) => (
-        <div class="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-200 hover:border-yellow-400 transition-all">
-          <div class="flex gap-6">
-            <div class="w-24 h-24 flex-shrink-0">
-              <img 
-                src={story.pixelAvatar} 
-                alt={story.author} 
-                class="w-full h-full object-cover rounded-lg"
-                style="image-rendering: pixelated;"
-              />
-            </div>
-            <div>
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="font-pixel text-xl">{story.title}</h3>
-                <span class="font-pixel text-sm text-gray-500">{story.period}</span>
-              </div>
-              <p class="font-pixel text-gray-700 mb-4">"{story.story}"</p>
-              <p class="font-pixel text-yellow-600">- {story.author}</p>
-            </div>
-          </div>
+  <!-- Hero -->
+  <main class="pt-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+          Don't let your memes be dreams
+        </h1>
+        <p class="mt-4 text-xl text-gray-600">
+          The Book of Chads: Tales of Based Trading
+        </p>
+        <div class="mt-8">
+          <a
+            href="https://tensor.trade"
+            class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg transition-colors font-medium"
+          >
+            Trading now on Tensor ↗
+          </a>
         </div>
-      ))}
+      </div>
+
+      <!-- Stories -->
+      <div class="mt-24 space-y-12">
+        {stories.map((story) => (
+          <div class="bg-white rounded-lg p-6 border-2 border-gray-100 hover:border-yellow-400 transition-colors">
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-gray-500">{story.period}</span>
+              <span class="text-yellow-600 font-medium">- {story.author}</span>
+            </div>
+            <p class="text-gray-800 text-lg leading-relaxed">
+              "{story.story}"
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   </main>
 </Layout>
-
-<style>
-  @font-face {
-    font-family: 'PixelFont';
-    src: url('/fonts/VT323-Regular.ttf') format('truetype');
-  }
-
-  .font-pixel {
-    font-family: 'PixelFont', monospace;
-    letter-spacing: 0.5px;
-  }
-
-  /* Pixel art rendering */
-  img {
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-  }
-</style>
