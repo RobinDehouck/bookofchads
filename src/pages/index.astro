@@ -1,12 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { useState, useEffect } from 'react';
 
 const metadata = {
-  title: 'The Book of Chads - Trading Success Stories',
+  title: 'The Book of Chads - Pixel Stories',
 };
 
-// These would come from your database/API
+// Stories database
 const chadStories = [
   {
     id: 1,
@@ -14,7 +13,7 @@ const chadStories = [
     period: "2017-2020",
     title: "From -300K to Freedom",
     story: "When I first got started in 2017 I had a net worth of close to -$300K (negative) and could barely scrape together $200 to buy anything. Then in 2019/20 lost my job and house lol. Thanks to crypto I have pretty much flipped the entire situation in the other direction. I have a visceral hatred for bears",
-    tags: ["comeback", "resilience", "crypto"]
+    pixelAvatar: "/assets/chad-avatars/1.png"
   },
   {
     id: 2,
@@ -22,108 +21,89 @@ const chadStories = [
     period: "2023",
     title: "Built Different",
     story: "Bro im built different, i lost ever single satoshi u see here but got up everyday hungry and hunting with a positive attitude",
-    tags: ["mindset", "persistence", "bitcoin"]
+    pixelAvatar: "/assets/chad-avatars/2.png"
   }
 ];
 
-// Shuffle function for randomizing stories
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-const shuffledStories = shuffleArray([...chadStories]);
+// Shuffle the stories
+const shuffledStories = [...chadStories].sort(() => Math.random() - 0.5);
 ---
 
 <Layout metadata={metadata}>
-  <div class="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+  <!-- Navigation Bar (matching the image) -->
+  <nav class="fixed top-0 w-full bg-white border-b border-gray-200 px-4 py-3 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="font-pixel text-xl font-bold">CHAD</h1>
+      <div class="flex gap-6">
+        <a href="#" class="font-pixel">About</a>
+        <a href="#" class="font-pixel">Meme HoF</a>
+        <a href="#" class="font-pixel">TAO of Chad</a>
+        <a href="#" class="font-pixel">ChadOS</a>
+        <a href="#" class="font-pixel">BROadmap</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-20 min-h-screen" style="background: url('/assets/pixel-grid-bg.png') repeat;">
     <!-- Hero Section -->
-    <header class="relative overflow-hidden py-24 px-4 md:px-8">
-      <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 mix-blend-multiply"></div>
-        <div class="absolute bottom-0 h-px w-full bg-gradient-to-r from-transparent via-green-500/50 to-transparent"></div>
-      </div>
-      
-      <div class="relative z-10 max-w-5xl mx-auto text-center">
-        <h1 class="text-6xl md:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-          The Book of Chads
-        </h1>
-        <p class="mt-6 text-xl md:text-2xl text-gray-300">
-          Tales of Resilience, Victory, and the Relentless Pursuit of Success
-        </p>
-      </div>
-    </header>
+    <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+      <h1 class="font-pixel text-4xl mb-4">Don't let your memes be dreams</h1>
+      <p class="font-pixel text-lg text-gray-700 mb-8">
+        The Book of Chads: Tales of Based Trading
+      </p>
+      <a 
+        href="https://tensor.trade" 
+        target="_blank" 
+        class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-pixel px-8 py-3 rounded-lg transition-colors"
+      >
+        Trading now on Tensor ↗
+      </a>
+    </div>
 
-    <!-- Stories Section -->
-    <main class="max-w-4xl mx-auto px-4 md:px-8 py-16 space-y-32">
-      {shuffledStories.map((story, index) => (
-        <article class="relative">
-          <!-- Story number indicator -->
-          <div class="absolute -left-24 top-0 hidden md:block">
-            <span class="text-9xl font-bold text-gray-800/20">
-              {(index + 1).toString().padStart(2, '0')}
-            </span>
-          </div>
-
-          <!-- Story content -->
-          <div class="relative backdrop-blur-sm bg-white/5 rounded-lg p-8 border border-gray-800">
-            <div class="absolute inset-0 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-lg"></div>
-            
-            <div class="relative">
-              <div class="flex items-center justify-between mb-6">
-                <h2 class="text-3xl font-bold text-green-400">{story.title}</h2>
-                <span class="text-gray-400">{story.period}</span>
+    <!-- Stories Grid -->
+    <div class="max-w-6xl mx-auto px-4 py-16 grid gap-8">
+      {shuffledStories.map((story) => (
+        <div class="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-200 hover:border-yellow-400 transition-all">
+          <div class="flex gap-6">
+            <div class="w-24 h-24 flex-shrink-0">
+              <img 
+                src={story.pixelAvatar} 
+                alt={story.author} 
+                class="w-full h-full object-cover rounded-lg"
+                style="image-rendering: pixelated;"
+              />
+            </div>
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-pixel text-xl">{story.title}</h3>
+                <span class="font-pixel text-sm text-gray-500">{story.period}</span>
               </div>
-              
-              <p class="text-xl leading-relaxed text-gray-300 mb-6">
-                "{story.story}"
-              </p>
-              
-              <div class="flex items-center justify-between">
-                <span class="text-green-400 font-semibold">- {story.author}</span>
-                <div class="flex gap-2">
-                  {story.tags.map(tag => (
-                    <span class="px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-sm">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <p class="font-pixel text-gray-700 mb-4">"{story.story}"</p>
+              <p class="font-pixel text-yellow-600">- {story.author}</p>
             </div>
           </div>
-        </article>
+        </div>
       ))}
-    </main>
-
-    <!-- Add Story CTA -->
-    <section class="py-24 px-4 md:px-8 text-center">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-green-400 mb-6">
-          Your Story Belongs Here
-        </h2>
-        <p class="text-xl text-gray-300 mb-8">
-          Every Chad has a story. Share yours with the community.
-        </p>
-        <button class="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg text-white font-bold text-lg hover:opacity-90 transition-opacity">
-          Submit Your Story
-        </button>
-      </div>
-    </section>
-  </div>
+    </div>
+  </main>
 </Layout>
 
 <style>
-  @keyframes gradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  @font-face {
+    font-family: 'PixelFont';
+    src: url('/fonts/VT323-Regular.ttf') format('truetype');
   }
 
-  .gradient-animate {
-    background-size: 200% 200%;
-    animation: gradientFlow 15s ease infinite;
+  .font-pixel {
+    font-family: 'PixelFont', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  /* Pixel art rendering */
+  img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 </style>
