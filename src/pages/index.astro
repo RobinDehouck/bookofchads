@@ -46,6 +46,16 @@ const stories = [
   }
 ].reverse();
 
+
+const REACTIONS = ['🔥', '💎', '🚀', '🐻'];
+
+declare global {
+  interface Window {
+    CHAD_QUOTES: string[];
+    REACTIONS: string[];
+  }
+}
+
 const CHAD_QUOTES = [
   "We're All Gonna Make It Brah 💪",
   "1 BTC = 1 BTC 🎯",
@@ -57,12 +67,17 @@ const CHAD_QUOTES = [
   "Up Only 📈"
 ];
 
-const REACTIONS = ['🔥', '💎', '🚀', '🐻'];
-
 const metadata = {
   title: 'Book of CHADS',
   description: 'Legendary tales of crypto warriors',
-}
+  openGraph: {
+    basic: {
+      title: 'Book of CHADS',
+      type: 'website',
+      image: '',
+    }
+  }
+};
 ---
 
 <Layout {metadata}>
@@ -246,6 +261,11 @@ const metadata = {
     100% { transform: skew(0deg); }
   }
 </style>
+
+<script define:vars={{ CHAD_QUOTES }}>
+  // Make CHAD_QUOTES available globally
+  window.CHAD_QUOTES = CHAD_QUOTES;
+</script>
 
 <script>
   function initMatrix() {
