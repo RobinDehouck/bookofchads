@@ -313,7 +313,7 @@ const metadata = {
     if (!quoteElement) return;
 
     setInterval(() => {
-      const randomQuote = CHAD_QUOTES[Math.floor(Math.random() * CHAD_QUOTES.length)];
+      const randomQuote = window.CHAD_QUOTES[Math.floor(Math.random() * window.CHAD_QUOTES.length)];
       quoteElement.textContent = randomQuote;
     }, 5000);
   }
