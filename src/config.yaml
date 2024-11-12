@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: Chadswtf
     images:
-      - url: '~/assets/images/default.png'
+      - url: 'https://uploads-ssl.webflow.com/62d1b7c0c4ee9be60d160b8c/6365732401421e7c0792233e_utility-welcome-home.svg'
         width: 1200
         height: 628
     type: website
