@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: BOOK OF CHADS
+  site: 'https://bookofchads.vercel.app/'
   base: '/'
   trailingSlash: false
 
